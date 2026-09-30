@@ -1,0 +1,23 @@
+name: trace_agent_timeline
+description: "An agent run timeline for Flutter: streaming reasoning, tool calls, parallel steps and retries, with adapters for OpenAI, Anthropic and the Vercel AI SDK."
+version: 1.0.0
+homepage: https://yagnikbarasiya23.github.io/trace_agent_timeline/
+repository: https://github.com/YagnikBarasiya23/trace_agent_timeline
+issue_tracker: https://github.com/YagnikBarasiya23/trace_agent_timeline/issues
+topics: [ai, agent, timeline, streaming, widget]
+screenshots:
+  - description: "Trace showing reasoning, a tool call and parallel tools in the demo app"
+    path: screenshots/trace_agent_timeline.jpg
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

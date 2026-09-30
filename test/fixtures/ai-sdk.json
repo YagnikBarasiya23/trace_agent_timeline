@@ -1,0 +1,12 @@
+[
+  { "type": "start" },
+  { "type": "reasoning-start", "id": "r1" },
+  { "type": "reasoning-delta", "id": "r1", "text": "Pull the numbers." },
+  { "type": "reasoning-end", "id": "r1" },
+  { "type": "tool-call", "toolCallId": "t1", "toolName": "analytics_summary", "input": { "days": 30 } },
+  { "type": "tool-call", "toolCallId": "t2", "toolName": "best_time", "input": {} },
+  { "type": "tool-result", "toolCallId": "t1", "output": { "reach": 7200 } },
+  { "type": "tool-error", "toolCallId": "t2", "error": { "message": "Timed out" } },
+  { "type": "finish-step" },
+  { "type": "finish" }
+]
