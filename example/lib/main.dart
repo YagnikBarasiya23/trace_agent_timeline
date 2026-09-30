@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:trace_agent_timeline/trace_agent_timeline.dart';
 
+import 'controls.dart';
+
 void main() => runApp(const TraceDemo());
 
 const _bg = Color(0xFF050505);
@@ -118,7 +120,8 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   Stream<Map<String, dynamic>> _anthropicStream() async* {
-    const thinking = 'Reach dipped last week. Compare the two weeks and look at what was posted before suggesting anything.';
+    const thinking =
+        'Reach dipped last week. Compare the two weeks and look at what was posted before suggesting anything.';
     final events = <Map<String, dynamic>>[
       {
         'type': 'message_start',
@@ -139,7 +142,12 @@ class _DemoPageState extends State<DemoPage> {
       {
         'type': 'content_block_start',
         'index': 1,
-        'content_block': {'type': 'tool_use', 'id': 'toolu_1', 'name': 'analytics_compare', 'input': <String, dynamic>{}},
+        'content_block': {
+          'type': 'tool_use',
+          'id': 'toolu_1',
+          'name': 'analytics_compare',
+          'input': <String, dynamic>{},
+        },
       },
       {
         'type': 'content_block_delta',
@@ -184,15 +192,14 @@ class _DemoPageState extends State<DemoPage> {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    Widget button(String label, Future<void> Function() run) => OutlinedButton(
-      onPressed: _running ? null : () => _play(run),
-      child: Text(label),
-    );
+    Widget button(String label, Future<void> Function() run, {bool primary = false}) =>
+        PillButton(label: label, primary: primary, onPressed: _running ? null : () => _play(run));
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 28, 20, 40),
+            padding: EdgeInsets.fromLTRB(20, 28, 20, 40 + MediaQuery.paddingOf(context).bottom),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 720),
               child: Column(
@@ -225,7 +232,7 @@ class _DemoPageState extends State<DemoPage> {
                     spacing: 8,
                     runSpacing: 8,
                     children: [
-                      button('Run the agent', _agent),
+                      button('Run the agent', _agent, primary: true),
                       button('Run with a failure', () => _agent(failImage: true)),
                       button(
                         'Replay an Anthropic stream',
@@ -234,7 +241,14 @@ class _DemoPageState extends State<DemoPage> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Text('MIT © 2026 Yagnik Barasiya · respects reduced motion', style: text.bodySmall?.copyWith(color: _muted)),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      'MIT © 2026 Yagnik Barasiya · respects reduced motion',
+                      style: text.bodySmall?.copyWith(color: _muted),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ],
               ),
             ),
