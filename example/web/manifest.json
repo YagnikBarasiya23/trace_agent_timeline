@@ -1,11 +1,11 @@
 {
-    "name": "trace_agent_timeline_example",
-    "short_name": "trace_agent_timeline_example",
+    "name": "Trace",
+    "short_name": "Trace",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#050505",
+    "theme_color": "#050505",
+    "description": "Trace demo",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
